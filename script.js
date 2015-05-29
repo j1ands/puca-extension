@@ -16,6 +16,9 @@ var returnCounter = 0;
 var load = true;
 
 function autoTrade() {
+    if($("a.fancybox-close").length > 0) {
+        $("a.fancybox-close").click();   
+    }
     loadTableData(search);
     setTimeout(function(){
         var sendcards = $("a.fancybox-send");
@@ -26,6 +29,9 @@ function autoTrade() {
                 console.log(confirmtrade);
                 confirmtrade.click();
                 tradeCounter++;
+                if(tradeCounter < 5) {
+                    autoTrade();
+                }
             }, 750);
         } else {
             autoTrade();
