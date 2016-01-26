@@ -1,5 +1,3 @@
-//console.log(loadTableData);
-
 var tradeCounter = 0;
 
 var search = {
@@ -9,7 +7,21 @@ var search = {
 }
 
 setTimeout(function(){
-    autoTrade();
+	$.ajax({
+		url: "https://pucatrade.com/ajax/filterCountry/all/out/false"
+	})
+	.done(function(){
+		
+	$.ajax({
+		url: "https://pucatrade.com/ajax/filterCountry/71/out/true"
+	})
+	.done(function(){
+		
+	autoTrade();
+	
+	});
+		
+	});
 }, 10000);
 
 var returnCounter = 0;
@@ -29,13 +41,13 @@ function autoTrade() {
                 console.log(confirmtrade);
                 confirmtrade.click();
                 tradeCounter++;
-                if(tradeCounter < 5) {
+                if(tradeCounter < 1) {
                     autoTrade();
                 }
             }, 750);
         } else {
             autoTrade();
         }
-    }, 950);
+    }, 2500);
     console.log(tradeCounter);
 }
